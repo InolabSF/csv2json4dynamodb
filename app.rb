@@ -26,7 +26,7 @@ number_of_files = (all_csv_datas.count % MAX_ITEMS_PER_JSON == 0) ? (all_csv_dat
 for i in 0...number_of_files
   last_index = (i+1)*MAX_ITEMS_PER_JSON
   last_index = all_csv_datas.count - 1 if last_index >= all_csv_datas.count
-  csv_datas = all_csv_datas[i*MAX_ITEMS_PER_JSON, last_index]
+  csv_datas = all_csv_datas[i*MAX_ITEMS_PER_JSON...last_index]
   json_name = csv_name.sub(".csv", "_#{i}.json")
   File.open(json_name, "w") do |file|
     file.write({name => csv_datas}.to_json)
