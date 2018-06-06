@@ -8,6 +8,10 @@ require 'csv'
 MAX_ITEMS_PER_JSON = 25
 ITEM_LINE = 0; TYPE_LINE = 1
 
+csv_text = File.read(csv_name)
+csv_text.gsub!(/(\r\n|\n|\r)/ , "\r\n")
+File.open(csv_name, "wb") { |io| io.write(csv_text) }
+
 # read csv and make json
 all_csv_datas = []
 items = []; types = []
